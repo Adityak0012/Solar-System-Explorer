@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+#scene-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 0;
+}
+
+#scroll-container {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 6vw;
+    position: relative;
+}
+
+.info-panel {
+    max-width: 420px;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.info-panel.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info-panel.right-align {
+    margin-left: auto;
+}
+
+.planet-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+}
+
+.planet-name {
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.planet-divider {
+    width: 40px;
+    height: 2px;
+    margin-bottom: 20px;
+    border-radius: 1px;
+}
+
+.planet-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 12px 14px;
+    backdrop-filter: blur(10px);
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+}
+
+.planet-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+}
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.scroll-indicator.hidden { opacity: 0; }
+
+.scroll-indicator span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+}
+
+.scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1.5px solid rgba(255,255,255,0.3);
+    border-bottom: 1.5px solid rgba(255,255,255,0.3);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(6px); }
+}
+
+.progress-bar {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.progress-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.progress-dot.active {
+    background: #fff;
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+    transform: scale(1.5);
+}
+
+.progress-dot:hover::after {
+    content: attr(data-name);
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.6);
+    background: rgba(0,0,0,0.7);
+    padding: 4px 10px;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+    .section { padding: 0 5vw; }
+    .info-panel { max-width: 320px; }
+    .planet-name { font-size: clamp(36px, 10vw, 56px); }
+    .progress-bar { right: 12px; gap: 10px; }
+    .planet-stats { gap: 8px; }
+    .stat { padding: 10px 12px; }
+}
