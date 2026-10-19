@@ -2,6 +2,8 @@
 
 Solar System Explorer is an interactive 3D website that takes you on a scroll-driven journey from the Sun to Neptune. Each planet is a textured 3D model with glowing atmospheres and rings, paired with an info panel showing its size, orbit, temperature and moons. Built with HTML, CSS, JavaScript and Three.js.
 
+🔗 **Live Demo:** [solar-system-explorer-seven-kappa.vercel.app](https://solar-system-explorer-seven-kappa.vercel.app/)
+
 ![Sun](screenshots/sun.png)
 
 ## ✨ Features
@@ -45,6 +47,8 @@ Solar Project/
 ```
 
 ## 🚀 How to Run
+
+To view it without installing anything, open the **[live demo](https://solar-system-explorer-seven-kappa.vercel.app/)**. To run it locally:
 
 1. Clone the repository
    ```bash
